@@ -1,6 +1,3 @@
-cd /Users/nithish/Cloud-Computing
-
-cat << 'EOF' > README.md
 # Cloud-Native E-Commerce & SRE Platform (CCws26)
 
 A production-style **Cloud-Native E-Commerce & Site Reliability Engineering** platform demonstrating reliability, fault tolerance, scalability, observability, role-based security, Infrastructure as Code, and FinOps cost modeling on AWS.
