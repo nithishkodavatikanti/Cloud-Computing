@@ -335,23 +335,3 @@ Cloud-Computing/
 ```
 
 ---
-
-## Screenshots & Demo Evidence
-
-> Capture screenshots during live AWS deployment and save them in `docs/screenshots/`.
-
-- [ ] Customer Storefront & Admin Management Portal (CloudFront HTTPS)
-- [ ] AWS Cognito User Pool & Role-Based Access Enforcement
-- [ ] Grafana Overview Dashboard & Prometheus Alert Firing
-- [ ] AWS CloudWatch Dashboard & SNS Alert Notification
-- [ ] Locust Load-Test Report & EC2 Auto Scaling Group Scale-Out
-
----
-
-## Future Improvements
-
-- Automated blue/green or canary deployments via CodeDeploy and ALB weighted target groups.
-- Terraform drift detection and PR cost-estimation comments via Infracost.
-- RDS Proxy for high-concurrency database connection pooling and read replicas.
-- Distributed tracing with OpenTelemetry alongside metrics and structured logs.
-- Automated chaos engineering drills using AWS Fault Injection Service (FIS).
