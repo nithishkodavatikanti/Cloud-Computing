@@ -1,0 +1,45 @@
+name: Terraform validation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["terraform/**", ".github/workflows/terraform.yml"]
+  pull_request:
+    paths: ["terraform/**", ".github/workflows/terraform.yml"]
+
+jobs:
+  fmt-validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env: [dev, prod]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+          terraform_wrapper: false
+      - name: Terraform fmt
+        run: terraform fmt -recursive -check -diff
+        working-directory: terraform
+      - name: Terraform init (no backend)
+        run: terraform init -backend=false
+        working-directory: terraform/environments/${{ matrix.env }}
+      - name: Terraform validate
+        run: terraform validate
+        working-directory: terraform/environments/${{ matrix.env }}
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Trivy
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+          trivy --version
+      # Advisory: scan Terraform for HIGH/CRITICAL misconfigurations and report
+      # them in the log. exit-code 0 keeps CI green for documented portfolio
+      # patterns (e.g. broad IAM resources); review any findings before prod.
+      - name: Trivy Terraform config scan (advisory)
+        run: trivy config --severity HIGH,CRITICAL --exit-code 0 terraform/
