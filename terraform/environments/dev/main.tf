@@ -92,3 +92,11 @@ module "monitoring" {
   redis_cluster_id        = module.cache.replication_group_id
   tags                    = local.common_tags
 }
+
+module "auth" {
+  source       = "../../modules/auth"
+  project_name = "ccws26"
+  environment  = "dev"
+  aws_region   = var.region
+  tags         = local.common_tags
+}

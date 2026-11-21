@@ -11,3 +11,7 @@ output "redis_endpoint" { value = module.cache.redis_configuration_endpoint }
 output "alert_topic_arn" { value = module.monitoring.alert_topic_arn }
 output "ops_bucket" { value = module.storage.bucket_name }
 output "dashboard_name" { value = module.monitoring.dashboard_name }
+output "cognito_user_pool_id" { value = module.auth.user_pool_id }
+output "cognito_user_pool_client_id" { value = module.auth.user_pool_client_id }
+output "cognito_issuer_url" { value = module.auth.issuer_url }
+output "cognito_jwks_uri" { value = module.auth.jwks_uri }
