@@ -15,3 +15,5 @@ output "cognito_user_pool_id" { value = module.auth.user_pool_id }
 output "cognito_user_pool_client_id" { value = module.auth.user_pool_client_id }
 output "cognito_issuer_url" { value = module.auth.issuer_url }
 output "cognito_jwks_uri" { value = module.auth.jwks_uri }
+output "frontend_bucket_name" { value = module.frontend.bucket_name }
+output "frontend_url" { value = "https://${module.frontend.cloudfront_domain_name}" }

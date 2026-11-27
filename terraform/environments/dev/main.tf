@@ -100,3 +100,10 @@ module "auth" {
   aws_region   = var.region
   tags         = local.common_tags
 }
+
+module "frontend" {
+  source      = "../../modules/frontend"
+  name_prefix = local.name_prefix
+  environment = "dev"
+  tags        = local.common_tags
+}
